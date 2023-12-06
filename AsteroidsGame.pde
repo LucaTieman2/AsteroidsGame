@@ -11,7 +11,6 @@ public void setup () {
   for (int nI = 0; nI < 10; nI++) {
      theList.add(new Asteroid());
   }
-  System.out.println(theList.size());
 }
 
 public void keyPressed () {
@@ -46,7 +45,6 @@ public void draw () {
     float d = dist((float)bob.getX(), (float)bob.getY(), (float)theList.get(f).getNumX(), (float)theList.get(f).getNumY());
     if (d < 10) {
       theList.remove(f);
-      System.out.println("collided");
     }
   }
 }
