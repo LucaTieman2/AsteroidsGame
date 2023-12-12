@@ -1,5 +1,6 @@
 Spaceship bob = new Spaceship ();
 ArrayList <Asteroid> theList = new ArrayList <Asteroid>();
+ArrayList <Bullet> shots = new ArrayList <Bullet>();
 Star sob [];
 public void setup () {
   size(500,500);
@@ -11,6 +12,8 @@ public void setup () {
   for (int nI = 0; nI < 10; nI++) {
      theList.add(new Asteroid());
   }
+  System.out.println(theList.size());
+  System.out.println(shots.size());
 }
 
 public void keyPressed () {
@@ -30,6 +33,9 @@ public void keyPressed () {
   {
    bob.hyperspace();
   }
+  if (key == ' ') {
+    shots.add(new Bullet(bob));
+  }
 }
 
 public void draw () {
@@ -43,8 +49,24 @@ public void draw () {
     theList.get(f).show();
     theList.get(f).move();
     float d = dist((float)bob.getX(), (float)bob.getY(), (float)theList.get(f).getNumX(), (float)theList.get(f).getNumY());
-    if (d < 10) {
+    if (d < 30) {
       theList.remove(f);
+      System.out.println("collided");
+    }
+  }
+  for (int j = 0; j < shots.size(); j++) {
+    shots.get(j).move();
+    shots.get(j).show();
+  } 
+  for (int nI = 0; nI < shots.size(); nI++) {
+    for (int z = 0; z < theList.size(); z++) {
+      float b = dist((float)theList.get(z).getNumX(), (float)theList.get(z).getNumY(), (float)shots.get(nI).getNumX(), (float)shots.get(nI).getNumY());
+      if (b < 30) {
+        theList.remove(z);
+        shots.remove(nI);
+        System.out.println("bullet collision");
+        break;
+      }
     }
   }
 }
