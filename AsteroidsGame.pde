@@ -12,8 +12,6 @@ public void setup () {
   for (int nI = 0; nI < 10; nI++) {
      theList.add(new Asteroid());
   }
-  System.out.println(theList.size());
-  System.out.println(shots.size());
 }
 
 public void keyPressed () {
@@ -51,7 +49,6 @@ public void draw () {
     float d = dist((float)bob.getX(), (float)bob.getY(), (float)theList.get(f).getNumX(), (float)theList.get(f).getNumY());
     if (d < 30) {
       theList.remove(f);
-      System.out.println("collided");
     }
   }
   for (int j = 0; j < shots.size(); j++) {
@@ -64,7 +61,6 @@ public void draw () {
       if (b < 30) {
         theList.remove(z);
         shots.remove(nI);
-        System.out.println("bullet collision");
         break;
       }
     }
